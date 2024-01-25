@@ -1,6 +1,12 @@
 from typing import Iterable
 from spacy.tokens import Token
-from util import filter_tokens_by_tag, discard_random_tokens, permute_with_max_distance, get_lemmas
+from augmentation_rules.util import (
+    filter_tokens_by_tag,
+    discard_random_tokens,
+    permute_with_max_distance,
+    get_lemmas,
+)
+
 
 def moryossef_general_rules(sent: Iterable[Token]) -> str:
     """
