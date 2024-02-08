@@ -1,0 +1,44 @@
+# Pretrain with Ancora new RB synth data (no permutation) + train/dev ID/DL corpus, no features
+
+## Where the samples will be written
+save_data: tg-pretrain
+## Where the vocab(s) will be written
+src_vocab: tg-pretrain/tg-pretrain.vocab.src
+tgt_vocab: tg-pretrain/tg-pretrain.vocab.tgt
+# src_feats_vocab: 
+#     feat_0:  toy-es-lse/run_dep/wd.vocab.feat_0
+#     feat_1:  toy-es-lse/run_pos/wd.vocab.feat_1
+feat_merge: "concat"
+# Prevent overwriting existing files in the folder
+overwrite: True
+
+# Corpus opts:
+data:
+    corpus_1:
+        path_src: ancora_pt_es.txt
+        path_tgt: ancora_pt_gloss.txt
+        transforms: [inferfeats]
+    valid:
+        path_src: eslse_dev_es.txt
+        path_tgt: eslse_dev_gloss.txt
+        transforms: [inferfeats]
+# Train on a single GPU
+world_size: 1
+gpu_ranks: [0]
+
+# Where to save the checkpoints
+save_model: tg-pretrain/tg-pretrain_01
+save_checkpoint_steps: 200
+train_steps: 10000
+valid_steps: 200
+
+#both_embeddings: glove_dir/glove-sbwc.i25.vec
+# to set src and tgt embeddings separately:
+#src_embeddings: glove_dir/glove-sbwc.i25.vec
+# tgt_embeddings: ...
+
+# supported types: GloVe, word2vec
+#embeddings_type: "GloVe"
+
+# word_vec_size need to match with the pretrained embeddings dimensions
+#word_vec_size: 300
