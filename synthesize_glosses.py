@@ -5,12 +5,22 @@ from spacy.tokens import Token
 from spacy.language import Language
 from augmentation_rules.moryossef_general_rules import moryossef_general_rules
 from tqdm import tqdm
+import os
 
 # ! DATA_PATH = "data/Tatoeba Corpus/ca-es.txt/Tatoeba.ca-es.ca"
-DATA_PATH = "test.txt"
-OUTPUT_FILE_NAME = "augmented"
+DATA_PATH = "data/Tatoeba Corpus/ca/Tatoeba.ca-es.ca"
+OUTPUT_FILE_NAME = "data/augmented/augmented"
 
 Augmentation_rule_t = Callable[[Iterable[Token]], str]
+
+
+def split(txt, seps):
+    default_sep = seps[0]
+
+    # we skip seps[0] because that's the default separator
+    for sep in seps[1:]:
+        txt = txt.replace(sep, default_sep)
+    return [i.strip() for i in txt.split(default_sep)]
 
 
 def generate_synthetic_glosses(
@@ -42,29 +52,44 @@ def write_parallel_sentences(
         original_sentences (list[str]): the original sentences
         synthetic_data (list[list[str]]): all the synthetic translations
     """
-    with open(OUTPUT_FILE_NAME + ".gl", "w") as fp_gl:
-        with open(OUTPUT_FILE_NAME + ".ca", "w") as fp_ca:
+    with open(OUTPUT_FILE_NAME + ".lsc", "w+") as fp_gl:
+        with open(OUTPUT_FILE_NAME + ".cat", "w+") as fp_ca:
             for i, generated_glosses in enumerate(synthetic_data):
                 for line in generated_glosses:
-                    fp_ca.write(original_sentences[i] + "\n")
-                    fp_gl.write(line + "\n")
+                    if line:
+                        fp_ca.write(original_sentences[i] + "\n")
+                        fp_gl.write(line + "\n")
 
 
 def main() -> None:
     # Load the spacy model
     print("Loading SpaCy model...")
-    nlp = spacy.load("ca_core_news_trf")
+    nlp = spacy.load("ca_core_news_sm")
 
     # Read the sentences into a dataframe and eliminate duplicates
-    print(f"Reading input file at: {DATA_PATH}")
-    with open(DATA_PATH, "r") as fp:
-        lines = fp.readlines()
-        sentences = [line.strip() for line in lines]
-        df = pd.DataFrame(sentences, columns=["sentences"]).drop_duplicates()
+    print(f"Reading input at: {DATA_PATH}")
+
+    if os.path.isdir(DATA_PATH):
+        for file in os.listdir(DATA_PATH):
+            lines = []
+            with open(os.path.join(DATA_PATH, file), "r") as fp:
+                lines.extend(fp.readlines())
+    else:
+        with open(DATA_PATH, "r") as fp:
+            lines = fp.readlines()
+    sentences = [line.strip() for line in lines]
+    df = pd.DataFrame(sentences, columns=["sentences"]).drop_duplicates()
 
     # * Create the synthetic gloss translation applying some rules
     synthetic_data = []
-    for sent in tqdm(df["sentences"], desc="Processing sentences", unit="sentence"):
+    count = 0
+    for sent in df["sentences"]:
+        # Get rid of sentences that are too long
+        if len(split(sent, "., ")) >= 50:
+            continue
+
+        count += 1
+        print(f"Sentence {count}: {sent}")
         synthetic_data.append(
             generate_synthetic_glosses(nlp, sent, moryossef_general_rules)
         )
