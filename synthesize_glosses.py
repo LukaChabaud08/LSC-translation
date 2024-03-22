@@ -81,6 +81,7 @@ def main() -> None:
     df = pd.DataFrame(sentences, columns=["sentences"]).drop_duplicates()
 
     # * Create the synthetic gloss translation applying some rules
+    kept_sentences = []
     synthetic_data = []
     count = 0
     for sent in df["sentences"]:
@@ -90,13 +91,14 @@ def main() -> None:
 
         count += 1
         print(f"Sentence {count}: {sent}")
+        kept_sentences.append(sent)
         synthetic_data.append(
             generate_synthetic_glosses(nlp, sent, moryossef_general_rules)
         )
 
     # Write the parallel results
     print(f"Writing output at: {OUTPUT_FILE_NAME}.ca and {OUTPUT_FILE_NAME}.gl")
-    write_parallel_sentences(df["sentences"].to_list(), synthetic_data)
+    write_parallel_sentences(kept_sentences, synthetic_data)
 
 
 if __name__ == "__main__":
