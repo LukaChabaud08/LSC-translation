@@ -1,13 +1,13 @@
 import numpy as np
 from spacy.tokens import Token
-from typing import Iterable
+from typing import Iterable, List
 from itertools import permutations
 import random
 
 ACCEPTED_TAGS = ("NOUN", "VERB", "ADJ", "ADV", "NUM")
 
 
-def get_lemmas(sent: list[Token]) -> list[str]:
+def get_lemmas(sent: List[Token]) -> List[str]:
     """get the lemmas from the tokens, and return them
 
     Args:
@@ -20,7 +20,7 @@ def get_lemmas(sent: list[Token]) -> list[str]:
     return [token.lemma_ for token in sent]
 
 
-def filter_tokens_by_tag(sent: Iterable[Token]) -> list[Token]:
+def filter_tokens_by_tag(sent: Iterable[Token]) -> List[Token]:
     """returns the tokenized sentence without all the tokens with unaccepted POS tags
 
     Args:
@@ -32,7 +32,7 @@ def filter_tokens_by_tag(sent: Iterable[Token]) -> list[Token]:
     return [token for token in sent if token.pos_ in ACCEPTED_TAGS]
 
 
-def discard_random_tokens(sent: list[Token], p: float = 0.2) -> list[Token]:
+def discard_random_tokens(sent: List[Token], p: float = 0.2) -> List[Token]:
     """randomly discard the tokens of the given sentence with probability p
 
     Args:
@@ -49,7 +49,7 @@ def discard_random_tokens(sent: list[Token], p: float = 0.2) -> list[Token]:
     return [token for token in sent if random.random() >= p]
 
 
-def permute_with_max_distance(sent: list[Token], max_distance: int = 4) -> list[Token]:
+def permute_with_max_distance(sent: List[Token], max_distance: int = 4) -> List[Token]:
     """Apply a random permutation σ to S verifying ∀i ∈ {1, n}, |σ(i) − i| ≤ max_distance, where n is the number of tokens
 
     Args:

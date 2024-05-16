@@ -1,38 +1,29 @@
-# Project Title
+# Neural Based Machine Translation from Catalan Sign Language glosses to written Catalan
 
-Brief description of your project.
+This repository contains the augmentation and embedding scripts used for the training of a Neural Translation Network from Catalan Sign Language glosses to spoken catalan.
 
 ## Table of Contents
 
 - [Project Title](#project-title)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
-  - [Features](#features)
   - [Installation](#installation)
-  - [Usage](#usage)
-  - [Contributing](#contributing)
-  - [License](#license)
-  - [Acknowledgements](#acknowledgements)
-  - [Contact](#contact)
 
 ## Description
 
-Provide a detailed description of your project. Explain its purpose, features, and any other relevant information.
+This repository provides 3 main scripts:
 
-## Features
-
-List the key features of your project.
-
-- Feature 1
-- Feature 2
-- ...
+- Data augmentation script: scripts that create synthetic data. See [synthesize_glosses.py](synthesize_glosses.py)
+- Data preparation script: scripts that help preparing the data. See [extract_sentences.py](extract_sentences.py)
+- Embeddings script: scripts to create word embedding models. See [embeddings.py](embeddings.py)
 
 ## Installation
 
-Provide step-by-step instructions on how to install your project. Include any dependencies that need to be installed and how to install them.
+You can install the project with the following commands:
 
 ```bash
 # Example installation steps
-git clone https://github.com/yourusername/yourproject.git
-cd yourproject
-npm install
+git clone https://github.com/LukaChabaud08/LSC-translation.git
+cd LSC-translation
+pip install -r requirements.txt
+```

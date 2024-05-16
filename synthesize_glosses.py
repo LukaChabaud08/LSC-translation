@@ -6,6 +6,7 @@ from spacy.language import Language
 from augmentation_rules.moryossef_general_rules import moryossef_general_rules
 from tqdm import tqdm
 import os
+from typing import List
 
 # ! DATA_PATH = "data/Tatoeba Corpus/ca-es.txt/Tatoeba.ca-es.ca"
 DATA_PATH = "data/Tatoeba Corpus/ca/Tatoeba.ca-es.ca"
@@ -28,7 +29,7 @@ def generate_synthetic_glosses(
     sent: str,
     augmentation_rules: Augmentation_rule_t,
     iterations: int = 1,
-) -> list[str]:
+) -> List[str]:
     """generate a synthetic gloss representation of the given string
 
     Args:
@@ -44,7 +45,7 @@ def generate_synthetic_glosses(
 
 
 def write_parallel_sentences(
-    original_sentences: list[str], synthetic_data: list[list[str]]
+    original_sentences: List[str], synthetic_data: List[List[str]]
 ):
     """given some sentences and all their generated synthetic glosses, write them in parallel in 2 different files
 
