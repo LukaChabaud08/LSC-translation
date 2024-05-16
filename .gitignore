@@ -1,2 +1,4 @@
 .venv
 __pycache__
+catalan-word-embeddings-fasttext
+test.txt
