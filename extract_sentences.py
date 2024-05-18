@@ -1,8 +1,8 @@
-import sys
 import os
+from argparse import ArgumentParser
 
 
-def main(input_dir: str) -> None:
+def main(input_dir: str, field: int) -> None:
 
     if not os.path.isdir(input_dir):
         print(f"Path {input_dir} is not a valid directory")
@@ -22,14 +22,17 @@ def main(input_dir: str) -> None:
 
                 for line in lines:
                     tokens = line.split()
-                    words = [token.split("|")[0] for token in tokens]
+                    words = [token.split("|")[field] for token in tokens]
                     output_fp.write(" ".join(words) + "\n")
 
 
 if __name__ == "__main__":
 
-    if len(sys.argv) < 2:
-        print("Need to input the directory")
-        sys.exit()
-
-    main(sys.argv[1])
+    parser = ArgumentParser()
+    parser.add_argument(
+        "input_directory",
+        help="path to the directory where the corpus files are located",
+    )
+    parser.add_argument("field", type=int)
+    args = parser.parse_args()
+    main(args.input_directory, args.field)
