@@ -23,7 +23,7 @@ def moryossef_general_rules(sent: Iterable[Token]) -> str:
     """
     sentence = filter_tokens_by_tag(sent)
     sentence = discard_random_tokens(sentence)
-    sentence = permute_with_max_distance(sentence)
+    # sentence = permute_with_max_distance(sentence)
     sentence = get_lemmas(sentence)
 
     # ? The output format might need to be changed, so that it is the same as in the LSC Corpus

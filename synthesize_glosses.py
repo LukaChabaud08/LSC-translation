@@ -9,8 +9,9 @@ import os
 from typing import List
 
 # ! DATA_PATH = "data/Tatoeba Corpus/ca-es.txt/Tatoeba.ca-es.ca"
-DATA_PATH = "data/Tatoeba Corpus/ca/Tatoeba.ca-es.ca"
-OUTPUT_FILE_NAME = "data/augmented/augmented"
+# DATA_PATH = "data/Tatoeba Corpus/ca/Tatoeba.ca-es.ca"
+DATA_PATH = "data/ancora-raw/ancora-cat.txt"
+OUTPUT_FILE_NAME = "data/augmented_ancora/augmented_ancora"
 
 Augmentation_rule_t = Callable[[Iterable[Token]], str]
 
