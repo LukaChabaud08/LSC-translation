@@ -4,14 +4,15 @@ import spacy
 from spacy.tokens import Token
 from spacy.language import Language
 from augmentation_rules.moryossef_general_rules import moryossef_general_rules
+from augmentation_rules.catalan_specific_rules import LSC_specific_rules
 from tqdm import tqdm
 import os
 from typing import List
 
 # ! DATA_PATH = "data/Tatoeba Corpus/ca-es.txt/Tatoeba.ca-es.ca"
 # DATA_PATH = "data/Tatoeba Corpus/ca/Tatoeba.ca-es.ca"
-DATA_PATH = "data/ancora-raw/ancora-cat.txt"
-OUTPUT_FILE_NAME = "data/augmented_ancora/augmented_ancora"
+DATA_PATH = "data/tatoeba/ca/Tatoeba.ca-es.ca"
+OUTPUT_FILE_NAME = "data/augmented_general_tatoeba/augmented_general_tatoeba"
 
 Augmentation_rule_t = Callable[[Iterable[Token]], str]
 
@@ -88,15 +89,17 @@ def main() -> None:
     count = 0
     for sent in df["sentences"]:
         # Get rid of sentences that are too long
-        if len(split(sent, "., ")) >= 50:
+        if len(split(sent, "., ")) >= 40:
             continue
 
         count += 1
-        print(f"Sentence {count}: {sent}")
         kept_sentences.append(sent)
-        synthetic_data.append(
-            generate_synthetic_glosses(nlp, sent, moryossef_general_rules)
-        )
+        try:
+            synthetic_data.append(
+                generate_synthetic_glosses(nlp, sent, moryossef_general_rules)
+            )
+        except:
+            continue
 
     # Write the parallel results
     print(f"Writing output at: {OUTPUT_FILE_NAME}.ca and {OUTPUT_FILE_NAME}.gl")

@@ -44,11 +44,11 @@ Max BLEU score at checkpoint 4000: 46.925377943549236
 
 ### Wordvec size and hidden size
 
-| Wordvec size | Score                                                 |
-| ------------ | ----------------------------------------------------- |
-| 256          | Max BLEU score at checkpoint 3000: 46.3655821896654   |
-| 512          | Max BLEU score at checkpoint 4000: 46.925377943549236 |
-| 1024         | Max BLEU score at checkpoint 3000: 48.54754192671245  |
+| Wordvec and hidden size | Score                                                 |
+| ----------------------- | ----------------------------------------------------- |
+| 256                     | Max BLEU score at checkpoint 3000: 46.3655821896654   |
+| 512                     | Max BLEU score at checkpoint 4000: 46.925377943549236 |
+| 1024                    | Max BLEU score at checkpoint 3000: 48.54754192671245  |
 
 ### Learning rate
 
@@ -71,6 +71,10 @@ Max BLEU score at checkpoint 4000: 46.925377943549236
 | Used embeddings | Score                                                 |
 | --------------- | ----------------------------------------------------- |
 | None            | Max BLEU score at checkpoint 4000: 46.925377943549236 |
-| Source          |                                                       |
+| Source          | Max BLEU score at checkpoint 2400: 46.37989905439381  |
 | Target          | Max BLEU score at checkpoint 3000: 47.29576855897429  |
-| Both            |                                                       |
+| Both            | Max BLEU score at checkpoint 3000: 45.60755607560462  |
+
+## Model with optimal values found
+
+Max BLEU score at checkpoint 2800: 48.565728711401825

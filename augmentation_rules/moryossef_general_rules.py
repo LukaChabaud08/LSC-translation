@@ -26,5 +26,4 @@ def moryossef_general_rules(sent: Iterable[Token]) -> str:
     # sentence = permute_with_max_distance(sentence)
     sentence = get_lemmas(sentence)
 
-    # ? The output format might need to be changed, so that it is the same as in the LSC Corpus
     return " ".join(sentence)

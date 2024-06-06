@@ -65,7 +65,7 @@ def format_prediction(pred_obj: dict[str, str]) -> str:
 
         lines.extend(
             [
-                " ".join(word_tokenize(sentence.strip())) + " .\n"
+                " ".join(word_tokenize(sentence.strip())).lower() + " .\n"
                 for sentence in value.split(".")
                 if len(sentence.strip()) > 0
             ]
