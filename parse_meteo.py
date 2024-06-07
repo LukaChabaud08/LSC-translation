@@ -6,7 +6,7 @@ import nltk
 from nltk.tokenize import word_tokenize
 
 
-def parse_date(time_string):
+def parse_date(filename: str):
     # Define the Catalan names for days of the week and months
     week_days = [
         "dilluns",
@@ -32,8 +32,13 @@ def parse_date(time_string):
         "desembre",
     ]
 
+    time_string = (
+        os.path.basename(filename).removeprefix("meteocat_").removesuffix(".json")
+    )
     # Parse the input time string into a datetime object
-    parsed_time = datetime.strptime(time_string, "%Y%m%dZ").replace(tzinfo=timezone.utc)
+    parsed_time = datetime.strptime(time_string, "%Y_%m_%d").replace(
+        tzinfo=timezone.utc
+    )
 
     # Get the day of the week, day of the month, month, and year
     day_of_week = week_days[parsed_time.weekday()]
@@ -92,13 +97,11 @@ def parse_prediction(input_path: str, output_path: str) -> None:
                 # Check if there are multiple days in a file
                 if isinstance(parsed_file, list):
                     for pred in parsed_file:
-                        output_fp.write(parse_date(pred["diaPredit"]))
-                        output_fp.write(format_prediction(pred["versio"]["variables"]))
+                        output_fp.write(parse_date(file))
+                        output_fp.write(format_prediction(pred["variables"]))
                 else:
-                    output_fp.write(parse_date(parsed_file["diaPredit"]))
-                    output_fp.write(
-                        format_prediction(parsed_file["versio"]["variables"])
-                    )
+                    output_fp.write(parse_date(file))
+                    output_fp.write(format_prediction(parsed_file["variables"]))
 
 
 if __name__ == "__main__":
