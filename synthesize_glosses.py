@@ -11,8 +11,8 @@ from typing import List
 
 # ! DATA_PATH = "data/Tatoeba Corpus/ca-es.txt/Tatoeba.ca-es.ca"
 # DATA_PATH = "data/Tatoeba Corpus/ca/Tatoeba.ca-es.ca"
-DATA_PATH = "data/tatoeba/ca/Tatoeba.ca-es.ca"
-OUTPUT_FILE_NAME = "data/augmented_general_tatoeba/augmented_general_tatoeba"
+DATA_PATH = "data/meteocat/meteocat.cat"
+OUTPUT_FILE_NAME = "data/augmented_LSC_meteocat/augmented_LSC_meteocat"
 
 Augmentation_rule_t = Callable[[Iterable[Token]], str]
 
@@ -96,7 +96,7 @@ def main() -> None:
         kept_sentences.append(sent)
         try:
             synthetic_data.append(
-                generate_synthetic_glosses(nlp, sent, moryossef_general_rules)
+                generate_synthetic_glosses(nlp, sent, LSC_specific_rules)
             )
         except:
             continue

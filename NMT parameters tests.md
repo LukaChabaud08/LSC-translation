@@ -75,6 +75,104 @@ Max BLEU score at checkpoint 4000: 46.925377943549236
 | Target          | Max BLEU score at checkpoint 3000: 47.29576855897429  |
 | Both            | Max BLEU score at checkpoint 3000: 45.60755607560462  |
 
-## Model with optimal values found
+### Model with optimal values found
 
 Max BLEU score at checkpoint 2800: 48.565728711401825
+
+## Data Augmentation
+
+### Combined General Tatoeba
+
+Max BLEU score at checkpoint 3800: 35.40834735121386
+Max METEOR score at checkpoint 5000: 50.24867201589785
+
+Max BLEU score at checkpoint 5000: 31.7002538153255
+Max METEOR score at checkpoint 7600: 53.25140228551314
+
+### Combined LSC Tatoeba
+
+Max BLEU score at checkpoint 4400: 34.48675623737426
+Max METEOR score at checkpoint 3000: 45.6154847897087
+
+Max BLEU score at checkpoint 8800: 29.130937085528917
+Max METEOR score at checkpoint 9200: 52.78091073430101
+
+### Combined General AnCora
+
+Max BLEU score at checkpoint 4800: 34.28713992236381
+Max METEOR score at checkpoint 2800: 56.723110230413674
+
+Max BLEU score at checkpoint 6400: 36.39769329471602
+Max METEOR score at checkpoint 7200: 54.5368140068245
+
+### Combined LSC AnCora
+
+Max BLEU score at checkpoint 4600: 36.393473162000085
+Max METEOR score at checkpoint 3200: 54.96719736589475
+
+Max BLEU score at checkpoint 5000: 31.288790287839014
+Max METEOR score at checkpoint 5000: 46.2307591478902
+
+### Augmented General Tatoeba
+
+Max BLEU score at checkpoint 1800: 0.4617550903124908
+Max METEOR score at checkpoint 4000: 8.515734172174723
+
+Max BLEU score at checkpoint 7600: 18.411436117989492
+Max METEOR score at checkpoint 7600: 36.42204997366822
+
+### Augmented LSC Tatoeba
+
+Max BLEU score at checkpoint 2800: 0.27910732188996507
+Max METEOR score at checkpoint 1800: 5.1866770992410745
+
+Max BLEU score at checkpoint 9200: 12.140508302324003
+Max METEOR score at checkpoint 7600: 27.981138712322736
+
+### Augmented General AnCora
+
+Max BLEU score at checkpoint 1000: 0.27723336220052597
+Max METEOR score at checkpoint 1000: 9.015460581825426
+
+Max BLEU score at checkpoint 7600: 1.0518626531351667
+Max METEOR score at checkpoint 7200: 14.47017057815886
+
+### Augmented LSC AnCora
+
+Max BLEU score at checkpoint 4400: 0.5226484377143764
+Max METEOR score at checkpoint 3000: 9.39164133993008
+
+Max BLEU score at checkpoint 5800: 8.979469579415404
+Max METEOR score at checkpoint 8600: 18.171952718038693
+
+### Combined General Meteocat
+
+Max BLEU score at checkpoint 3000: 51.55816238834341
+Max METEOR score at checkpoint 3400: 68.22063207830485
+
+Max BLEU score at checkpoint 5000: 40.48869773306925
+Max METEOR score at checkpoint 5600: 61.84606490007909
+
+### Combined LSC Meteocat
+
+Max BLEU score at checkpoint 3400: 46.124726460745244
+Max METEOR score at checkpoint 3800: 66.12778365834951
+
+Max BLEU score at checkpoint 5000: 39.59497600928088
+Max METEOR score at checkpoint 5000: 62.13005806355427
+
+### Augmented LSC Meteocat
+
+Max BLEU score at checkpoint 1400: 3.194377726864911
+Max METEOR score at checkpoint 2000: 14.182740306837768
+
+Max BLEU score at checkpoint 7600: 0.5572956004641145
+Max METEOR score at checkpoint 7600: 9.416899021171032
+
+### Augmented General Meteocat
+
+Max BLEU score at checkpoint 2400: 1.8136487334291023
+Max METEOR score at checkpoint 2000: 17.47729939792037
+
+Max BLEU score at checkpoint 6000: 0.7216144348302048
+Max METEOR score at checkpoint 6000: 8.746019275122233
